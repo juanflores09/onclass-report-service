@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: onclass-report-service
+  mongodb:
+    uri: mongodb://localhost:27017/db_bootcamp_report
+server:
+  port: 8084
