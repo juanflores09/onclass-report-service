@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info:
+  title: OnClass Report Service API
+  description: Microservicio de reportes y métricas para bootcamps con arquitectura hexagonal y WebFlux.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8084
+    description: Servidor de desarrollo local
+
+paths:
+  /api/v1/reports/bootcamps:
+    post:
+      summary: Crear un nuevo reporte de bootcamp
+      description: Recibe la información inicial de un bootcamp y registra su documento analítico en la base de datos.
+      operationId: createReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootcampReportRequestDTO'
+      responses:
+        '201':
+          description: Reporte creado exitosamente.
+        '400':
+          description: Datos de entrada inválidos o faltantes.
+
+  /api/v1/reports/bootcamps/{bootcampId}/increment-enrollment:
+    patch:
+      summary: Incrementar el contador de inscripciones
+      description: Incrementa atómicamente en 1 el contador de inscripciones (enrolledCount) de un bootcamp específico.
+      operationId: incrementEnrollment
+      parameters:
+        - name: bootcampId
+          in: path
+          required: true
+          description: ID único del bootcamp
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Contador incrementado exitosamente.
+        '404':
+          description: No se encontró el reporte para el bootcamp especificado.
+
+components:
+  schemas:
+    BootcampReportRequestDTO:
+      type: object
+      required:
+        - bootcampId
+        - name
+        - description
+        - capabilityCount
+        - technologyCount
+      properties:
+        bootcampId:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Java Reactive Bootcamp"
+        description:
+          type: string
+          example: "Bootcamp intensivo sobre Spring WebFlux y MongoDB"
+        capabilityCount:
+          type: integer
+          format: int32
+          example: 4
+        technologyCount:
+          type: integer
+          format: int32
+          example: 12

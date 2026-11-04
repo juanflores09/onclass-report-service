@@ -5,3 +5,12 @@ spring:
     uri: mongodb://localhost:27017/db_bootcamp_report
 server:
   port: 8084
+
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    url: /openapi.yaml
