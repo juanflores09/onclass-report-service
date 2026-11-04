@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,6 +18,8 @@ public class BootcampReport {
     private Long bootcampId;
     private String name;
     private String description;
+    private LocalDate launchDate;
+    private Integer durationInWeeks;
     private Integer capabilityCount;
     private Integer technologyCount;
     private Long enrolledCount;

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,6 +22,8 @@ public class BootcampReportDocument {
     private Long bootcampId;
     private String name;
     private String description;
+    private LocalDate launchDate;
+    private Integer durationInWeeks;
     private Integer capabilityCount;
     private Integer technologyCount;
     private Long enrolledCount;
